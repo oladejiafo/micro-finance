@@ -1,0 +1,411 @@
+    <tr>
+      <td width="17%" height="28">
+        Age:
+      </td>
+      <td width="31%" height="28">
+        <input type="text" name="age" size="24" value="<?php echo $row['Age']; ?>">  
+      </td>
+      <td width="1%" height="28"></td>
+      <td width="17%" height="28">
+        e-Mail:
+      </td>
+      <td width="34%" height="28">
+        <input type="text" name="email" size="24" value="<?php echo $row['email']; ?>">
+      </td>
+    </tr>
+    <tr>
+      <td width="17%" height="28">
+        Occupation:
+      </td>
+      <td width="31%" height="28"><input type="text" name="occupation" size="24" value="<?php echo $row['Occupation']; ?>" /></td>
+      <td width="1%" height="28"></td>
+      <td width="17%" height="28">
+        Employer:
+      </td>
+      <td width="34%" height="28">
+        <input type="text" name="employer" size="24" value="<?php echo $row['Employer']; ?>" />
+      </td>
+    </tr>
+    <tr>
+      <td width="17%" height="28">
+        Position:
+      </td>
+      <td width="31%" height="28">
+	    <input type="text" name="position" size="24" value="<?php echo $row['Position']; ?>" />
+	  </td>
+      <td width="1%" height="28"></td>
+      <td width="17%" height="28">
+        Office Address:
+      </td>
+      <td width="34%" height="28">
+        <textarea name="officeaddress" rows="2" cols="25" ><?php echo $row['Office Address']; ?></textarea>
+	  </td>
+    </tr>
+    <tr>
+      <td width="17%" height="28">
+        Contact Number:
+      </td>
+      <td width="31%" height="28">
+        <input type="text" name="contactno" size="24" value="<?php echo $row['Contact Number']; ?>">  
+      </td>
+      <td width="1%" height="28"></td>
+      <td width="17%" height="28">
+        Mobile Number:
+      </td>
+      <td width="34%" height="28">
+        <input type="text" name="mobileno" size="24" value="<?php echo $row['Mobile Number']; ?>">  
+      </td>
+    </tr>
+    <tr rowspan="2">
+      <td width="17%" height="28" valign="top">
+        Contact Address:
+      </td>
+      <td width="31%" height="28">
+      <textarea name="homeaddress" rows="2" cols="25" ><?php echo $row['Home Address']; ?></textarea>
+      </td>
+      <td width="1%" height="28"></td>
+      <td width="17%" height="28" valign="top">
+        Postal Address:
+      </td>
+      <td width="34%" height="28" valign="top">
+      <textarea name="postaladdress" rows="2" cols="25" ><?php echo $row['Postal Address']; ?></textarea>
+      </td>
+    </tr>
+    <tr rowspan="2">
+      <td width="17%" height="28" valign="top">
+        Date of Birth:
+      </td>
+      <td width="31%" height="28">
+<?php
+if (!$id)
+{ ?>
+       <input id="inputField2" type="text" size="24" name="dob" value="<?php echo date('d-m-Y'); ?>">
+<?php
+} else 
+{ ?>
+       <input id="inputField2" type="text" name="dob" size="24" value="<?php echo date('d-m-Y',strtotime($row['Date of Birth'])); ?>">
+<?php } ?>
+      </td>
+      <td width="1%" height="28"></td>
+      <td width="17%" height="28">
+        BVN Number:
+      </td>
+      <td width="34%" height="28">
+        <input type="text" name="bvn" size="24" value="<?php echo $row['BVN']; ?>">  
+      </td>
+    </tr>
+
+
+<table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#00CC99" width="100%" id="AutoNumber1" height="1">
+ <tr align='center'>
+  <td colspan="5" bgcolor="#00CC99"> </td>
+ </tr>
+</table>
+<?php
+} else {
+?>
+
+<form method="post" action="submitreg.php" enctype="multipart/form-data">
+<table border="0" cellpadding="5" id="table2" width='100%'>
+<tr>
+<td>
+	 <?php  if (file_exists("images/pics/" . $id . ".jpg")==1)
+            { ?>
+              <input type="submit" value="Remove Pix" name="submit" style="height:20; width:100; color:#008000; font-size: 10pt"><br>
+              <img border="1" src="images/pics/<?php echo $id; ?>.jpg" width="100" height="120">
+	 <?php  } else { ?>
+              <img border="1" src="images/pics/pix.jpg" width="100" height="120">	 
+	 <?php  } ?>			 
+</td>
+<td>Upload Image:</td>
+<td><input name="image_filename" type="file" id="image_filename">
+<input type="hidden" name="id" value="<?php echo @$_REQUEST['id'];?>"></td>
+<td align='right'>
+	 <?php  if (file_exists("images/sign/" . $id . ".jpg")==1)
+            { ?>
+              <input type="submit" value="Remove Signature" name="submit" style="height:20; width:140; color:#008000; font-size: 10pt"><br>
+              <img border="1" src="images/sign/<?php echo $id; ?>.jpg" width="140" height="90">
+	 <?php  } else { ?>
+              <img border="1" src="images/sign/sign.jpg" width="140" height="90">	 
+	 <?php  } ?>			 
+</td>
+<td align='right'>Upload Signature:</td>
+<td align='right'><input name="sign_filename" type="file" id="sign_filename">
+<input type="hidden" name="id" value="<?php echo @$_REQUEST['id'];?>"></td>
+
+</tr>
+</table>
+
+<fieldset style="padding: 2">
+<legend><b><i><font size="2" face="Tahoma" color="green">Account Information</font></i></b></legend>
+<div align="left">
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="99%" id="AutoNumber1">
+    <tr>
+      <td width="17%" height="28">
+        Account Number:
+      </td>
+      <td width="31%" height="28">
+<?php
+if (!$row['Account Number'])
+{
+  $sqlz = "SELECT `Branch Code` FROM `branch` Where `Branch`='$brch'";
+  $resultz = mysql_query($sqlz,$conn);
+  $rowz = mysql_fetch_array($resultz);
+  $bcd=$rowz['Branch Code'];
+
+  $sqlx = "SELECT `Account Number` FROM `customer` order by `ID` desc";
+  $resultx = mysql_query($sqlx,$conn);
+  $rowx = mysql_fetch_array($resultx);
+  $ann=$rowx['Account Number'];
+
+  $ann=$ann+1;   
+  $accNum=$bcd . $ann;
+
+?>
+        <input type="text" name="acctno" size="24"  value="<?php echo @$accNum; ?>" required>
+<?php
+} else {
+?>
+        <input type="text" name="acctno" size="24"  value="<?php echo @$row['Account Number']; ?>" required>
+<?php  
+}
+?>
+        <input type="hidden" name="id" size="24" value="<?php echo $row['ID']; ?>">
+        <input type="hidden" name="group" size="24" value="<?php echo $grp; ?>">
+      </td>
+      <td width="1%" height="28"></td>
+      <td width="17%" height="28">
+       Account Type:
+      </td>
+      <td width="34%" height="28">
+        <select name="type" size="1" value="<?php echo @$row['Account Type']; ?>" required>
+          <option selected><?php echo @$row['Account Type']; ?></option>
+          <?php  
+         	$sqlt = "SELECT `Type` FROM `account type` ORDER BY Type;";
+        	$resultt = mysql_query($sqlt) or die('Invalid query: ' . mysql_error());
+        	while ($rows = mysql_fetch_array($resultt))
+		{
+		  echo " <option>" . $rows['Type'] . "</option>\n";
+		}
+          ?> 
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td width="17%" height="28">
+        Registration Date:
+      </td>
+      <td width="31%" height="28"> 
+<?php
+if (!$id)
+{ ?>
+       <input id="inputField" type="text" size="24" name="regdate" value="<?php echo date('d-m-Y'); ?>" required>
+<?php
+} else 
+{ ?>
+
+       <input id="inputField" type="text" name="regdate" size="24" value="<?php echo date('d-m-Y',strtotime($row['Date Registered'])); ?>" required>
+<?php } ?>
+      </td>
+      <td width="1%" height="28"></td>
+      <td width="17%" height="28">
+        Account Officer:
+      </td>
+      <td width="34%" height="28">
+        <input type="text" name="acctofficer" size="24" value="<?php echo $row['Account Officer']; ?>">
+      </td>
+    </tr>
+    <tr>
+      <td width="17%" height="28">
+        Identification Type:
+      </td>
+      <td width="31%" height="28">
+        <select  name="idtype" width="31" value="<?php echo $row['Identification Type']; ?>">  
+          <?php  
+           echo '<option selected>' . $row['Identification Type'] . '</option>';
+           echo '<option>Drivers Licence</option>';
+           echo '<option>International Passport</option>';
+           echo '<option>National ID Card</option>';
+           echo '<option>Staff ID Card</option>';
+           echo '<option>Others</option>';
+          ?> 
+         </select>
+      </td>
+      <td width="1%" height="28"></td>
+      <td width="17%" height="28">
+        Identification Number:
+      </td>
+      <td width="34%" height="28">
+        <input type="text" name="idnumber" size="24" value="<?php echo $row['Identification Number']; ?>">
+      </td>
+    </tr>
+    <tr>
+      <td width="17%" height="28">
+        Branch:
+      </td>
+      <td width="31%" height="28">
+<?php
+if ($_REQUEST['brch'])
+{
+?>
+        <select name="branch" size="1" value="<?php echo $_REQUEST['brch']; ?>">
+          <option selected><?php echo $_REQUEST['brch']; ?></option>
+<?php
+} else {
+?>
+        <select name="branch" size="1" value="<?php echo @$row['Branch']; ?>">
+          <option selected><?php echo @$row['Branch']; ?></option>
+          <?php  
+}
+         	$sqlt = "SELECT `Branch` FROM `branch` ORDER BY `Branch`;";
+        	$resultt = mysql_query($sqlt) or die('Invalid query: ' . mysql_error());
+        	while ($rows = mysql_fetch_array($resultt))
+		{
+		  echo " <option>" . $rows['Branch'] . "</option>\n";
+		}
+          ?> 
+        </select>
+      </td>
+      <td width="1%" height="28"></td>
+      <td width="17%" height="28">
+        Customer Category:
+      </td>
+      <td width="34%" height="28">
+        <select name="customercategory" width="31" value="<?php echo $row['Customer Category']; ?>">  
+          <?php  
+           echo '<option selected>' . $row['Customer Category'] . '</option>';
+           echo '<option>Executive Class</option>';
+           echo '<option>Middle Class</option>';
+           echo '<option>General Class</option>';
+          ?> 
+         </select>
+      </td>
+    </tr>
+
+    <tr>
+      <td width="17%" height="28">
+        Account Status:
+      </td>
+      <td width="31%" height="28">
+        <select  name="status" width="31" value="<?php echo $row['Status']; ?>" required>  
+          <?php  
+           echo '<option selected>' . $row['Status'] . '</option>';
+           echo '<option>Active</option>';
+           echo '<option>Dormant</option>';
+           echo '<option>Closed</option>';
+           echo '<option>Pending</option>';
+          ?> 
+         </select>
+      </td>
+      <td width="1%" height="28"></td>
+      <td width="17%" height="28">
+        <font color='Red'><b> Enable SMS Alert? </b></font> <br>
+        <font color='Red'><b> Enable e-Mail Alert? </b></font>
+      </td>
+      <td width="34%" height="28">
+        <font color='Red'><b>
+        <?php
+          $sqln = "SELECT `val`,`type` FROM `booln` ORDER BY `type` desc";
+          $result_cn = mysql_query($sqln,$conn) or die('Could not list; ' . mysql_error());
+
+          $cn=$row['SMS'];
+
+          while ($rows = mysql_fetch_array($result_cn)) 
+          {
+           echo ' <input type="radio" class="radio" align="left" id="cn_' . $rows['val'] . '" name="sms" value="' . $rows['val'] . '" ';
+           if ($rows['val'] == $cn) 
+           {
+             echo 'checked="checked" ';
+           }
+           echo '/>' . $rows['type'] . "\n";
+          }
+        ?>
+      </b></font>
+<br>
+        <font color='Red'><b>
+        <?php
+          $sqlm = "SELECT `val`,`type` FROM `booln` ORDER BY `type` desc";
+          $result_cm = mysql_query($sqlm,$conn) or die('Could not list; ' . mysql_error());
+
+          $cm=$row['email alert'];
+
+          while ($rows = mysql_fetch_array($result_cm)) 
+          {
+           echo ' <input type="radio" class="radio" align="left" id="cm_' . $rows['val'] . '" name="emailalert" value="' . $rows['val'] . '" ';
+           if ($rows['val'] == $cm) 
+           {
+             echo 'checked="checked" ';
+           }
+           echo '/>' . $rows['type'] . "\n";
+          }
+        ?>
+      </b></font>
+      </td>
+
+    </tr>
+  </table>
+ </fieldset>
+ <br>
+
+ <br>
+<fieldset style="padding: 2">
+<legend><b><i><font size="2" face="Tahoma" color="green">Next of Kin Information</font></i></b></legend>
+<div align="left">
+  <table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="99%" id="AutoNumber1" height="70">
+    <tr>
+      <td width="17%" height="28">
+        Next of Kin:
+      </td>
+      <td width="31%" height="28">
+        <input type="text" name="nkin" size="24" value="<?php echo $row['Next of Kin']; ?>">  
+      </td>
+      <td width="1%" height="28"></td>
+      <td width="17%" height="28">
+        Relationship:
+      </td>
+      <td width="34%" height="28">
+        <select name="relationship" width="31" value="<?php echo $row['Relationship']; ?>">  
+          <?php  
+           echo '<option selected>' . $row['Relationship'] . '</option>';
+           echo '<option>Family</option>';
+           echo '<option>Friend</option>';
+           echo '<option>Associate</option>';
+		   echo '<option>Employer</option>';
+		   echo '<option>Others</option>';
+          ?> 
+         </select>
+      </td>
+    </tr>
+    <tr rowspan="2">
+      <td width="17%" height="28" valign="top">
+        Next of Kin Contact:
+      </td>
+      <td width="31%" height="28">
+      <textarea name="nkcontact" rows="2" cols="25" ><?php echo $row['NKin Contact']; ?></textarea>
+      </td>
+      <td width="1%" height="28"></td>
+      <td width="17%" height="28" valign="top">
+        Next of Kin Phone:
+      </td>
+      <td width="34%" height="28" valign="top">
+	  <input type="text" name="nkphone" size="24" value="<?php echo $row['NK Phone']; ?>"> 
+      </td>
+    </tr> 
+ </table>
+ </fieldset>
+ <br>
+
+<?php
+ if (!$id){
+?>
+  <input type="submit" value="Save" name="submit"> &nbsp;
+<?php } 
+ else { ?>
+  <input type="submit" value="Update" name="submit"> &nbsp;  
+  <input type="submit" value="Delete" name="submit"  onclick="return confirm('Are you sure you want to Delete?');"> &nbsp;
+<?php
+} ?>
+  </p>
+  </div>
+</body>
+</form>

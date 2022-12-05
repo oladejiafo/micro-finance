@@ -1,0 +1,133 @@
+
+#form{
+	//background-color:#EFEFEF;
+	color:#D5FFFA;
+	border-radius:5px;
+//	border:2px solid #CC3300;
+//	border-color:sandybrown; //#CC3300;// rgb(211, 205, 61);
+  //  padding: 4px 30px;
+    font-Weight:700;
+//	width:700px;
+	font-size:12px;
+	float:center;
+	height:auto;
+//	margin-left: 65px;
+	}
+
+#form2{
+	background-color: #CCCCCC;//darkolivegreen;
+	color:#D5FFFA;
+	border-radius:5px;
+	border:2px solid #CC3300;
+	border-color:sandybrown; //#CC3300;// rgb(211, 205, 61);
+    padding: 4px 30px;
+    font-Weight:700;
+	width:260px;
+	font-size:12px;
+	float:left;
+	height:auto;
+	margin-left: -5px;
+	}
+	
+label{
+	font-size:15px;
+	font-weight:bold;
+	color: #FF9900; #D5FFFA;
+	}	
+labell{
+	font-size:18px;
+	font-weight:bold;
+	color: #FF0000;//#CC3300;
+	}		
+h3{
+	text-align:center;
+	font-size:24px;
+	margin-left: -125px;
+	}
+h2{
+	text-align:center;
+	font-size:24px;
+	margin-left: -75px;
+	color:#FF0000;
+	}	
+div#mainform{
+	margin:20px auto;
+	font-family: 'Fauna One', serif;
+	color: #cccccc;
+	}
+select{
+	width:200;
+	height:35px;
+	margin-top:10px;
+	border:none;
+	border-radius:3px;
+	padding:5px;
+	font-size:15px;	
+}
+input[type=text]{
+	width:200;
+	height:35px;
+	margin-top:10px;
+	border:none;
+	border-radius:3px;
+	padding:5px;
+	font-size:15px;
+	}	
+input[type=textt]{
+	width:150;
+	height:32px;
+	margin-top:10px;
+	border:none;
+	border-radius:3px;
+	padding:5px;
+	font-size:15px;
+	}	
+
+input[type=password]{
+	width:100;
+	height:40px;
+	margin-top:10px;
+	border:none;
+	border-radius:3px;
+	padding:5px;
+	}	
+
+textarea{
+	width:200;
+	height:60px;
+	margin-top:10px;
+	border:none;
+	border-radius:3px;
+	padding:5px;
+	resize:none;
+	font-size:15px;	
+	}
+textareaa{
+	width:300;
+	height:60px;
+	margin-top:10px;
+	border:none;
+	border-radius:3px;
+	padding:5px;
+	resize:none;
+	font-size:15px;	
+	}	
+input[type=radio]{
+	margin: 10px 5px 5px 5px;
+	}	
+input[type=submit]{
+	width:200;
+	height:40px;
+	margin-right:45px;
+
+	background-color: #990000; //sandybrown;
+	border:1px solid white;
+	border-radius:3px;
+	font-family: 'Fauna One', serif;
+	font-Weight:bold;
+	font-size:18px;
+	float:none;
+	}
+	#formget{
+	float:right;
+	}
